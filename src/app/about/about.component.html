@@ -1,0 +1,7 @@
+<h2>About Us</h2>
+<p *ngIf="contact">
+  <b>Name:</b> {{ contact.name }}<br />
+  <b>Address:</b> {{ contact.address }}<br />
+  <b>Phone:</b> {{ contact.phone }}
+</p>
+<p *ngIf="!contact">No contact information available.</p>
