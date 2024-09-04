@@ -14,7 +14,7 @@ import { ContactComponent } from './contact/contact.component';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
+export class AuthGuard implements CanActivate, CanDeactivate<ContactComponent> {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
   }
 
   canDeactivate(
-    component: unknown,
+    component: ContactComponent, // Specify ContactComponent here
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState: RouterStateSnapshot
@@ -43,7 +43,10 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (currentRoute.component === ContactComponent) {
+    // Check if any form field is filled
+    const isFormFilled = component.name || component.address || component.phone;
+
+    if (isFormFilled) {
       if (
         confirm('Are you sure you want to leave? Unsaved changes will be lost.')
       ) {
