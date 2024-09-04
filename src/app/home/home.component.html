@@ -1,5 +1,18 @@
 <h2>Welcome to Our Homepage</h2>
 <p>
-  This is the Home page of our Angular application. You can navigate to other
-  pages using the menu above.
+  Welcome to the Home page of our Angular application! Here, you can explore
+  Pokémon cards, discover detailed information about various Pokémon, and
+  navigate to other sections of the app using the menu above. Dive into the
+  world of Pokemon and enjoy your journey!
 </p>
+
+<h3>Pokemon Cards:</h3>
+<div class="pokemon-container">
+  <div *ngFor="let pokemon of pokemons" class="pokemon-card">
+    <img [src]="pokemon.image" [alt]="pokemon.name" class="pokemon-image" />
+    <h4>{{ pokemon.name | titlecase }}</h4>
+    <p><strong>Types:</strong> {{ pokemon.types }}</p>
+    <p><strong>Abilities:</strong> {{ pokemon.abilities }}</p>
+    <p><strong>Stats:</strong> {{ pokemon.stats }}</p>
+  </div>
+</div>

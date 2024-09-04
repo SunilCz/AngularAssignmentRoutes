@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ContactService } from './contact.service';
 
 @Component({
@@ -13,11 +14,15 @@ export class ContactComponent {
 
   constructor(private contactService: ContactService) {}
 
-  onSubmit() {
-    this.contactService.saveContact({
-      name: this.name,
-      address: this.address,
-      phone: this.phone,
-    });
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.contactService.saveContact({
+        name: this.name,
+        address: this.address,
+        phone: this.phone,
+      });
+
+      form.resetForm();
+    }
   }
 }

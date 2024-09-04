@@ -1,5 +1,5 @@
 <h2>Contact Us</h2>
-<form (ngSubmit)="onSubmit()">
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
   <div class="form-group">
     <label for="name">Name:</label>
     <input
@@ -9,7 +9,11 @@
       [(ngModel)]="name"
       name="name"
       required
+      #nameInput="ngModel"
     />
+    <div *ngIf="nameInput.invalid && nameInput.touched" class="text-danger">
+      Name is required.
+    </div>
   </div>
   <div class="form-group">
     <label for="address">Address:</label>
@@ -20,7 +24,14 @@
       [(ngModel)]="address"
       name="address"
       required
+      #addressInput="ngModel"
     />
+    <div
+      *ngIf="addressInput.invalid && addressInput.touched"
+      class="text-danger"
+    >
+      Address is required.
+    </div>
   </div>
   <div class="form-group">
     <label for="phone">Phone:</label>
@@ -31,7 +42,18 @@
       [(ngModel)]="phone"
       name="phone"
       required
+      pattern="^[0-9]{10}$"
+      #phoneInput="ngModel"
     />
+    <div *ngIf="phoneInput.invalid && phoneInput.touched" class="text-danger">
+      Phone is required and should be 10 digits.
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="contactForm.invalid"
+  >
+    Submit
+  </button>
 </form>

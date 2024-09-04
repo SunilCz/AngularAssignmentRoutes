@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './ auth.service';
 import { ContactService } from './contact/contact.service';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CalculatorComponent } from './calculator/calculator.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +23,9 @@ import { ContactService } from './contact/contact.service';
 
     AboutComponent,
     DashboardComponent,
+    CalculatorComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthGuard, AuthService, ContactService],
   bootstrap: [AppComponent],
 })

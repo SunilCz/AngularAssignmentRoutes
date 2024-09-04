@@ -5,7 +5,9 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { AuthGuard } from './auth.guard';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,6 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'calculator', component: CalculatorComponent },
 ];
 
 @NgModule({
